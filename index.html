@@ -7,18 +7,46 @@
     <title>NYT</title>
 </head>
 <body>
+    <form id="article-form">
+        <label for="search-input">Search for an article</label>
+        <input type="text" id="search-input"><br>
+
+        <label for="search-input">Search for an article</label>
+        <input type="text" id="search-input"><br>
+
+        <label for="search-input">Search for an article</label>
+        <input type="text" id="search-input"><br>
+          
+        <!-- This button will trigger our AJAX call -->
+        <input id="find-article" type="submit" value="Article Search">
+        </form>
+          
+        <!-- We'll be dumping our JSON contents in here -->
+        <div id="article-view"></div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
     
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
-url += '?' + $.param({
-  'api-key': "455ff650ce784864b7a74f4e2fc1331b"
-});
-$("#find-movie").on("click", function(event) {
-    event.preventDefault();
+    var keyWord = "#search-input"
 
+    var endDate = ""
+
+    var beginDate = ""
+
+url += '?' + $.param({
+  'api-key': "455ff650ce784864b7a74f4e2fc1331b",
+  'q': keyWord,
+  'begin_date': beginDate,
+  'end_date': endDate
+});
+
+$("#find-article").on("click", function(event) {
+    event.preventDefault();
+    clear();
     var search = $("#search-input").val();
+    
 
 
 $.ajax({
